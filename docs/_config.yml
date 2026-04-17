@@ -1,0 +1,12 @@
+title: "Swedish Construction Cost Database 2026"
+description: "Typical prices (low/typical/high) for 50+ construction categories across 24 regions"
+theme: jekyll-theme-cayman
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+url: "https://zaragoza-ab.github.io"
+baseurl: "/construction-cost-sweden-2026"
+author:
+  name: "Zaragoza AB"
+  email: "info@zaragoza.se"
+  url: "https://zaragoza.se"
