@@ -1,0 +1,42 @@
+{
+  "_meta": {
+    "description": "Regional price multipliers for Swedish construction costs. Multiply baseline (Skåne) price by the region's factor.",
+    "baseline_region": "Skåne",
+    "baseline_multiplier": 1.00,
+    "source": "Zaragoza AB analysis of Byggföretagen member data, SCB BPI, and Hemnet price aggregations 2024-2026"
+  },
+  "regions": {
+    "Stockholm": 1.30,
+    "Göteborg": 1.15,
+    "Malmö": 1.10,
+    "Uppsala": 1.15,
+    "Lund": 1.05,
+    "Helsingborg": 1.00,
+    "Skåne (övrigt)": 0.95,
+    "Halland": 1.00,
+    "Blekinge": 0.90,
+    "Småland": 0.90,
+    "Östergötland": 0.95,
+    "Västra Götaland (övrigt)": 1.00,
+    "Värmland": 0.90,
+    "Örebro": 0.95,
+    "Västmanland": 1.00,
+    "Södermanland": 1.05,
+    "Dalarna": 0.90,
+    "Gävleborg": 0.90,
+    "Jämtland": 1.00,
+    "Västernorrland": 0.95,
+    "Västerbotten": 1.05,
+    "Norrbotten": 1.10,
+    "Gotland": 1.15,
+    "Öland": 1.05
+  },
+  "modifiers": {
+    "urban_center": 0.00,
+    "suburbs": -0.05,
+    "rural": -0.10,
+    "remote_island": 0.15,
+    "limited_access": 0.10,
+    "winter_work_premium": 0.05
+  }
+}
