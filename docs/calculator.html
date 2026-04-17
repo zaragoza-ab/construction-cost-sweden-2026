@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Byggkostnadskalkylator 2026 — Zaragoza AB</title>
+<meta name="description" content="Öppen svensk byggkostnadskalkylator 2026. Uppskatta typisk kostnad för renovering, nybyggnad, och enskilda arbeten — regional justering, ROT-avdrag. CC BY 4.0 av Zaragoza AB, Helsingborg.">
+<meta name="author" content="Zaragoza AB">
+<link rel="canonical" href="https://zaragoza-ab.github.io/construction-cost-sweden-2026/calculator.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Byggkostnadskalkylator 2026 — Zaragoza AB">
+<meta property="og:description" content="Uppskatta svenska byggkostnader 2026 — med regional justering och ROT-avdrag.">
+<meta property="og:url" content="https://zaragoza-ab.github.io/construction-cost-sweden-2026/calculator.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Swedish Construction Cost Calculator 2026",
+  "description": "Open calculator for Swedish construction costs with regional adjustments and ROT-avdrag",
+  "url": "https://zaragoza-ab.github.io/construction-cost-sweden-2026/calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any (web)",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "SEK"},
+  "author": {
+    "@type": "Organization",
+    "name": "Zaragoza AB",
+    "url": "https://zaragoza.se",
+    "logo": "https://zaragoza.se/logo.png",
+    "telephone": "+46737245628",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Helsingborg",
+      "addressRegion": "Skåne",
+      "addressCountry": "SE"
+    }
+  },
+  "inLanguage": "sv"
+}
+</script>
+
+<style>
+  :root {
+    --bg: #f7f5f1;
+    --fg: #1a1a1a;
+    --accent: #8b2d2d;
+    --muted: #666;
+    --border: #ddd;
+    --card: #fff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+  header {
+    background: var(--accent);
+    color: #fff;
+    padding: 28px 20px;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 6px; font-size: 1.75em; }
+  header p { margin: 0; opacity: 0.92; font-size: 0.95em; }
+  main {
+    max-width: 820px;
+    margin: 28px auto;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  label {
+    display: block;
+    margin: 14px 0 6px;
+    font-weight: 600;
+    font-size: 0.95em;
+  }
+  select, input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1em;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+  }
+  .result {
+    background: #fff9f5;
+    border-left: 4px solid var(--accent);
+    padding: 16px 20px;
+    margin-top: 18px;
+    border-radius: 4px;
+  }
+  .result h3 { margin: 0 0 12px; color: var(--accent); }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px dashed #eee;
+  }
+  .row:last-child { border-bottom: 0; }
+  .row .label { color: var(--muted); }
+  .row .value { font-weight: 600; }
+  .notes {
+    font-size: 0.9em;
+    color: var(--muted);
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+  }
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--muted);
+    font-size: 0.88em;
+  }
+  footer a { color: var(--accent); }
+  .big {
+    font-size: 1.25em;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .disclaimer {
+    font-size: 0.85em;
+    color: #985;
+    padding: 10px 14px;
+    background: #fff9e5;
+    border-radius: 4px;
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Byggkostnadskalkylator 2026</h1>
+  <p>Öppet verktyg av Zaragoza AB · priser i SEK inkl. 25% moms</p>
+</header>
+
+<main>
+  <div class="card">
+    <label for="category">Kategori</label>
+    <select id="category"></select>
+
+    <label for="item">Arbete</label>
+    <select id="item"></select>
+
+    <label for="region">Region</label>
+    <select id="region"></select>
+
+    <label for="qty">Mängd (<span id="unit-label">st</span>)</label>
+    <input type="number" id="qty" value="1" min="0" step="0.1">
+
+    <div class="result" id="result"></div>
+
+    <div class="disclaimer">
+      Uppskattningar baserat på svenska marknadspriser april 2026. Exakt pris beror på firma, skick,
+      tillgänglighet av material. För bindande offert: kontakta <a href="https://zaragoza.se">Zaragoza AB</a> eller annan seriös byggfirma.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Hur fungerar ROT-avdraget?</h3>
+    <p>ROT-avdraget är 30% av arbetskostnaden (max 50 000 SEK per person och år, 2026).
+    Kalkylatorn visar uppskattat ROT-avdrag baserat på typisk arbetsandel i respektive arbete.
+    Nybyggnad ger inte ROT, men renovering, tillbyggnad, och vissa energiuppgraderingar gör det.</p>
+    <p>För detaljer om ROT-avdrag: se
+      <a href="https://github.com/zaragoza-ab/rot-avdrag-calculator">rot-avdrag-calculator</a>
+      och <a href="https://www.skatteverket.se/privat/skatter/arbeteinkomstdeklaration/rotochrutarbete.4.d5e04db14e1fe8f8ab800019.html">Skatteverket</a>.
+    </p>
+  </div>
+</main>
+
+<footer>
+  <p>Data: <a href="https://github.com/zaragoza-ab/construction-cost-sweden-2026">github.com/zaragoza-ab/construction-cost-sweden-2026</a> · CC BY 4.0</p>
+  <p>Maintained by <a href="https://zaragoza.se">Zaragoza AB</a>, Helsingborg · <a href="tel:+46737245628">+46 73 724 56 28</a> · <a href="mailto:info@zaragoza.se">info@zaragoza.se</a></p>
+</footer>
+
+<script>
+let costs = null;
+let regions = null;
+
+const el = (id) => document.getElementById(id);
+
+async function loadData() {
+  const baseUrl = (location.hostname === 'zaragoza-ab.github.io')
+    ? '/construction-cost-sweden-2026'
+    : '..';
+  const [c, r] = await Promise.all([
+    fetch(baseUrl + '/data/costs.json').then(r => r.json()),
+    fetch(baseUrl + '/data/regional-adjustments.json').then(r => r.json())
+  ]);
+  costs = c.items;
+  regions = r.regions || r;
+  initUI();
+}
+
+function initUI() {
+  const cats = [...new Set(costs.map(c => c.category))].sort();
+  el('category').innerHTML = cats.map(c => `<option value="${c}">${prettify(c)}</option>`).join('');
+
+  const regionEntries = Array.isArray(regions) ? regions : Object.entries(regions).map(([name, mult]) => ({ name, multiplier: typeof mult === 'number' ? mult : mult.multiplier }));
+  regionEntries.sort((a, b) => a.name.localeCompare(b.name, 'sv'));
+  el('region').innerHTML = regionEntries.map(r =>
+    `<option value="${r.multiplier}">${r.name} (×${r.multiplier.toFixed(2)})</option>`
+  ).join('');
+  const skane = regionEntries.find(r => /sk[åa]ne/i.test(r.name));
+  if (skane) el('region').value = skane.multiplier;
+
+  el('category').addEventListener('change', onCategoryChange);
+  el('item').addEventListener('change', update);
+  el('region').addEventListener('change', update);
+  el('qty').addEventListener('input', update);
+
+  onCategoryChange();
+}
+
+function onCategoryChange() {
+  const cat = el('category').value;
+  const items = costs.filter(c => c.category === cat);
+  el('item').innerHTML = items.map((c, i) =>
+    `<option value="${i}">${prettify(c.subcategory)} (${c.unit})</option>`
+  ).join('');
+  update();
+}
+
+function update() {
+  const cat = el('category').value;
+  const items = costs.filter(c => c.category === cat);
+  const item = items[parseInt(el('item').value) || 0];
+  if (!item) return;
+
+  el('unit-label').textContent = formatUnit(item.unit);
+
+  const mult = parseFloat(el('region').value) || 1.0;
+  const qty = parseFloat(el('qty').value) || 0;
+
+  const low = item.price_low_sek * mult * qty;
+  const typ = item.price_typical_sek * mult * qty;
+  const high = item.price_high_sek * mult * qty;
+
+  const rotPct = item.rot_eligible_labor_pct || 0;
+  const rotBase = typ * (rotPct / 100);
+  const rotSaving = Math.min(rotBase * 0.30, 50000);
+
+  let html = `
+    <h3>Uppskattat pris</h3>
+    <div class="row"><span class="label">Lågt (p25)</span><span class="value">${fmt(low)} SEK</span></div>
+    <div class="row"><span class="label">Typiskt (p50)</span><span class="value big">${fmt(typ)} SEK</span></div>
+    <div class="row"><span class="label">Högt (p75)</span><span class="value">${fmt(high)} SEK</span></div>
+  `;
+
+  if (rotPct > 0 && rotSaving > 0) {
+    html += `
+      <div class="row" style="margin-top:10px; padding-top:10px; border-top:2px solid var(--accent);">
+        <span class="label">Arbetskostnad (${rotPct}% av totalt)</span>
+        <span class="value">${fmt(rotBase)} SEK</span>
+      </div>
+      <div class="row">
+        <span class="label">ROT-avdrag (30% av arbete, max 50k/person)</span>
+        <span class="value" style="color: green;">−${fmt(rotSaving)} SEK</span>
+      </div>
+      <div class="row">
+        <span class="label">Nettopris efter ROT</span>
+        <span class="value big">${fmt(typ - rotSaving)} SEK</span>
+      </div>
+    `;
+  } else if (item.category === 'nybyggnad') {
+    html += `<div class="notes">Nybyggnad kvalificerar ej för ROT-avdrag.</div>`;
+  }
+
+  if (item.notes) html += `<div class="notes"><strong>Anmärkning:</strong> ${item.notes}</div>`;
+  if (item.includes) html += `<div class="notes"><strong>Ingår typiskt:</strong> ${item.includes.join(', ')}</div>`;
+
+  el('result').innerHTML = html;
+}
+
+function fmt(n) { return Math.round(n).toLocaleString('sv-SE'); }
+function prettify(s) { return s.replace(/-/g, ' ').replace(/\b(\d+m2)\b/g, '$1').replace(/\b\w/g, c => c.toUpperCase()); }
+function formatUnit(u) {
+  const map = { 'per-m2': 'm²', 'per-stuck': 'st', 'per-meter': 'lpm', 'per-m3': 'm³', 'per-rum': 'rum', 'per-hus': 'hus', 'per-anlaggning': 'st', 'per-ansokan': 'st', 'per-deklaration': 'st', 'per-kontroll': 'st', 'per-besiktning': 'st', 'per-uttag': 'st', 'per-central': 'st', 'per-stolpe': 'st', 'per-anslutning': 'st' };
+  return map[u] || u;
+}
+
+loadData().catch(e => el('result').innerHTML = `<div style="color:#b00">Fel vid inladdning: ${e.message}</div>`);
+</script>
+
+</body>
+</html>
