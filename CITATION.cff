@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "Swedish Construction Cost Database 2026"
+message: "If you use this work, please cite it."
+type: software
+authors:
+  - name: "Zaragoza AB"
+    city: Helsingborg
+    country: SE
+    website: "https://zaragoza.se"
+repository-code: "https://github.com/zaragoza-ab/construction-cost-sweden-2026"
+license: CC-BY-4.0
+date-released: "2026-04-17"
